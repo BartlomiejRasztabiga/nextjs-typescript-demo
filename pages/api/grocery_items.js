@@ -1,3 +1,5 @@
+require("../../database");
+require("../../models/all");
 // import { GroceryItem } from "../../models/grocery_item"
 import mongoose from 'mongoose'
 

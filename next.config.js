@@ -1,2 +1,2 @@
-require("./database");
-require("./models/all");
+// require("./database");
+// require("./models/all");
