@@ -1,5 +1,5 @@
-const { model } = require("mongoose");
+// const { model } = require("mongoose");
 
-module.exports = {
-    GroceryItem: model("GroceryItem")
-};
+// module.exports = {
+//     GroceryItem: model("GroceryItem")
+// };
