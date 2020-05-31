@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 
 const uri = process.env.MONGO_URL
 
+console.log('in database index.js')
+
 const options = {
     useNewUrlParser: true, // avoids DeprecationWarning: current URL string parser is deprecated
     useCreateIndex: true, // avoids DeprecationWarning: collection.ensureIndex is deprecated.

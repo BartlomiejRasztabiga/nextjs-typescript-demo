@@ -1,4 +1,4 @@
-import { GroceryItem } from "../../models"
+// import { GroceryItem } from "../../models"
 
 export default async (req, res) => {
     console.log(process.env.MONGO_URL)
