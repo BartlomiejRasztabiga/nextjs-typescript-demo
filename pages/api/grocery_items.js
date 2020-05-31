@@ -4,7 +4,7 @@ let conn = null;
 
 const uri = process.env.MONGO_URL;
 
-export default (req, res) => {
+export default async (req, res) => {
     if (conn == null) {
         conn = mongoose.createConnection(uri, {
             // Buffering means mongoose will queue up operations if it gets
