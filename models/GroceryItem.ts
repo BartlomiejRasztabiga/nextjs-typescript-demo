@@ -1,9 +1,13 @@
 import mongoose, { Schema, Document } from 'mongoose'
 
-export interface IGroceryItem extends Document {
+export interface IGroceryItem {
     name: string;
     description: string;
     quantity: number;
+}
+
+export interface GroceryItemDocument extends Document, IGroceryItem {
+
 }
 
 const GroceryItemSchema: Schema = new Schema({
@@ -12,4 +16,4 @@ const GroceryItemSchema: Schema = new Schema({
     quantity: { type: Number }
 })
 
-export default mongoose.models.GroceryItem || mongoose.model<IGroceryItem>('GroceryItem', GroceryItemSchema)
+export default mongoose.models.GroceryItem || mongoose.model<GroceryItemDocument>('GroceryItem', GroceryItemSchema)

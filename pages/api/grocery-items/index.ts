@@ -23,13 +23,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 }
 
 const onPost = async (req: NextApiRequest, res: NextApiResponse) => {
-    const newGroceryItem = await groceryItemService.createNewGroceryItem(req.body)
+    const newGroceryItem = await groceryItemService.createNew(req.body)
 
     res.status(201).json(newGroceryItem)
 }
 
 const onGet = async (req: NextApiRequest, res: NextApiResponse) => {
-    const groceryItems = await groceryItemService.getAllGroceryItems()
+    const groceryItems = await groceryItemService.getAll()
 
     res.status(200).json(groceryItems)
 }
