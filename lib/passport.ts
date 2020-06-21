@@ -20,6 +20,7 @@ passport.use(
     async (req, email, password, done) => {
       let userService = new UserService()
       const user = await userService.getUserByEmail(email)
+      console.log(user)
       if (user && (await bcrypt.compare(password, user.password))) done(null, user)
       else done(null, false, { message: 'Email or password is incorrect' })
     },
