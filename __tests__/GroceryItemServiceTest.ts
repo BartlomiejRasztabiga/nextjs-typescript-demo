@@ -1,4 +1,3 @@
-import dbConnect from '../lib/dbConnect'
 import GroceryItemService from '../services/GroceryItemService'
 import { connect, close, clear } from '../lib/dbTestUtils'
 import { IGroceryItem } from '../models/GroceryItem'

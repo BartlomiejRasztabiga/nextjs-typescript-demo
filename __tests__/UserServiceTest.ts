@@ -1,4 +1,3 @@
-import dbConnect from '../lib/dbConnect'
 import UserService from '../services/UserService'
 import { connect, close, clear } from '../lib/dbTestUtils'
 import { IUser } from '../models/User'
