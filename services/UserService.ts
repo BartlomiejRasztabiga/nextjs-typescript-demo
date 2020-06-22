@@ -1,6 +1,6 @@
 import User, { IUser } from '../models/User'
 
-let instance;
+let instance: UserService;
 
 export default class UserService {
 
@@ -8,7 +8,6 @@ export default class UserService {
 
     static getInstance() {
         if (!instance) {
-            console.log('creating new userservice instance')
             instance = new UserService();
         }
         return instance;

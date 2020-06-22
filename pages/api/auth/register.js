@@ -9,8 +9,9 @@ const userService = UserService.getInstance();
 
 handler.use(middleware);
 
-handler.post((req, res) => {
+handler.post((req, res, next) => {
   passport.authenticate('register', (err, user, info) => {
+    console.log(err, user, info)
     if (err) {
       console.log(err);
     }
@@ -29,12 +30,12 @@ handler.post((req, res) => {
           });
       });
     }
-  });
+  })(req, res, next);
 });
 
-handler.delete((req, res) => {
-  req.logOut();
-  res.status(204).end();
-});
+// handler.delete((req, res) => {
+//   req.logOut();
+//   res.status(204).end();
+// });
 
 export default handler;

@@ -7,9 +7,9 @@ async function connect() {
     const uri = await mongod.getConnectionString()
 
     return await mongoose.connect(uri, {
+        useCreateIndex: true,
         useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false,
+        useUnifiedTopology: true
     })
 }
 

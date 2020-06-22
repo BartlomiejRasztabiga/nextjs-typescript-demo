@@ -9,7 +9,7 @@ afterEach(async () => await clear())
 afterAll(async () => await close())
 
 describe('UserServiceTest', () => {
-    let userService = new UserService()
+    let userService = UserService.getInstance()
 
     test("it should save new user and return it while findById", async () => {
         let newly_created_user = await userService.createNew(example_user)
