@@ -22,7 +22,14 @@ handler.post((req, res, next) => {
       req.logIn(user, err => {
         const data = {
           email: req.body.email,
+          name: req.body.name
         };
+
+        // if (!data.email || !data.name) {
+        //   res.status(400).send({ message: 'missing fields' })
+        //   return
+        // }
+
         userService.updateUserByEmail(data.username, data)
           .then(() => {
             console.log('user created in db');

@@ -1,4 +1,4 @@
-import User, { IUser } from '../models/User'
+import User, { IUser, ICreateUser } from '../models/User'
 
 let instance: UserService;
 
@@ -21,11 +21,15 @@ export default class UserService {
         return await User.findOne({ _id })
     }
 
-    async createNew(user: IUser) {
+    async createNew(user: ICreateUser) {
         return await User.create(user)
     }
 
     async updateUserByEmail(email: String, updated: IUser) {
-        return await User.updateOne({ email }, updated)
+        console.log(updated);
+        let user = await User.findOneAndUpdate({ email }, updated, { upsert: false })
+        //TODO how to update a document
+        console.log(user)
+        return user
     }
 }
