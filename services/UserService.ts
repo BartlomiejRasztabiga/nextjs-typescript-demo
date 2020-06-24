@@ -26,10 +26,9 @@ export default class UserService {
     }
 
     async updateUserByEmail(email: String, updated: IUser) {
-        console.log(updated);
-        let user = await User.findOneAndUpdate({ email }, updated, { upsert: false })
-        //TODO how to update a document
-        console.log(user)
-        return user
+        let user = await User.findOne({ email })
+        user.email = updated.email;
+        user.name = updated.name;
+        return await user.save()
     }
 }

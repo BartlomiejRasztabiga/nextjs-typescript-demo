@@ -1,7 +1,6 @@
 import nextConnect from 'next-connect';
 import middleware from '../../../middlewares/middleware';
 import passport from '../../../lib/passport';
-import { extractUser } from '../../../lib/api-helpers';
 import UserService from '../../../services/UserService';
 
 const handler = nextConnect();
@@ -25,12 +24,7 @@ handler.post((req, res, next) => {
           name: req.body.name
         };
 
-        // if (!data.email || !data.name) {
-        //   res.status(400).send({ message: 'missing fields' })
-        //   return
-        // }
-
-        userService.updateUserByEmail(data.username, data)
+        userService.updateUserByEmail(data.email, data)
           .then(() => {
             console.log('user created in db');
             res.status(200).send({ message: 'user created' });
@@ -39,10 +33,5 @@ handler.post((req, res, next) => {
     }
   })(req, res, next);
 });
-
-// handler.delete((req, res) => {
-//   req.logOut();
-//   res.status(204).end();
-// });
 
 export default handler;
