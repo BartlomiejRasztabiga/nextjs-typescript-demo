@@ -10,6 +10,11 @@ const handler = nextConnect();
 handler.use(middleware);
 
 handler.get(async (req, res) => {
+    console.log(req.user)
+    if (!req.user) {
+        return res.status(401).send('Unauthorized');
+    }
+
     const groceryItems = await groceryItemService.getAll()
 
     res.status(200).json(groceryItems)

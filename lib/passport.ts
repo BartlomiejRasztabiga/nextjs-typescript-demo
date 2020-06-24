@@ -55,7 +55,7 @@ passport.use(
   'login',
   new LocalStrategy(
     {
-      usernameField: 'username',
+      usernameField: 'email',
       passwordField: 'password',
       session: false,
     },
@@ -85,7 +85,7 @@ passport.use(
 );
 
 const opts = {
-  jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('JWT'),
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
   secretOrKey: jwtSecret,
 };
 
