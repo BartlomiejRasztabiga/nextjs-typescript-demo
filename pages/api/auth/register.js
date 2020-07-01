@@ -27,7 +27,7 @@ handler.post((req, res, next) => {
         }
       });
     }
-  })(req, res, next);
+  }, { session: false })(req, res, next);
 });
 
 export default handler;
