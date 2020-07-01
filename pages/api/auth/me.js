@@ -19,7 +19,6 @@ handler.post((req, res, next) => {
         } else {
             console.log('user found in db from route');
             res.status(200).send({
-                auth: true,
                 email: user.email,
                 name: user.name
             });

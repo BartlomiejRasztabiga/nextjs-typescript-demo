@@ -24,9 +24,7 @@ handler.post((req, res, next) => {
                     .then(user => {
                         const token = jwt.sign({ id: user.email }, jwtSecret, { expiresIn: '1h' });
                         res.status(200).send({
-                            auth: true,
-                            token: token,
-                            message: 'user found & logged in',
+                            access_token: token
                         });
                     });
             });
