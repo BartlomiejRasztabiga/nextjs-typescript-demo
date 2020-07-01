@@ -9,15 +9,6 @@ const userService: UserService = UserService.getInstance()
 const jwtSecret = process.env.JWT_SECRET
 
 
-// passport.serializeUser((user, done) => {
-//   done(null, user._id);
-// });
-
-// passport.deserializeUser((req, id, done) => {
-//   userService.getUserById(id)
-//     .then((user) => done(null, user));
-// });
-
 passport.use(
   'register',
   new LocalStrategy(
@@ -86,7 +77,7 @@ passport.use(
 
 const opts = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: jwtSecret,
+  secretOrKey: jwtSecret
 };
 
 passport.use(

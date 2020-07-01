@@ -22,7 +22,7 @@ handler.post((req, res, next) => {
             req.logIn(user, err => {
                 userService.getUserByEmail(user.email)
                     .then(user => {
-                        const token = jwt.sign({ id: user.email }, jwtSecret);
+                        const token = jwt.sign({ id: user.email }, jwtSecret, { expiresIn: '1h' });
                         res.status(200).send({
                             auth: true,
                             token: token,
