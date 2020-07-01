@@ -8,7 +8,8 @@ export interface IUser {
 
 export interface ICreateUser {
     email: string,
-    password: string
+    password: string,
+    name: string
 }
 
 export interface UserDocument extends Document, IUser { }

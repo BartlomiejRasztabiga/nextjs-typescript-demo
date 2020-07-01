@@ -8,6 +8,13 @@ const BCRYPT_SALT_ROUNDS = 12;
 const userService: UserService = UserService.getInstance()
 const jwtSecret = process.env.JWT_SECRET
 
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
 
 passport.use(
   'register',
@@ -16,8 +23,9 @@ passport.use(
       usernameField: 'email',
       passwordField: 'password',
       session: false,
+      passReqToCallback: true
     },
-    (email, password, done) => {
+    (req, email, password, done) => {
       console.log(email)
       try {
         userService.getUserByEmail(email)
@@ -27,9 +35,12 @@ passport.use(
               return done(null, false, { message: 'username already taken' });
             } else {
               bcrypt.hash(password, BCRYPT_SALT_ROUNDS).then(hashedPassword => {
-                userService.createNew({ email: email, password: hashedPassword }).then(user => {
+                const additional_data = {
+                  name: req.body.name
+                };
+
+                userService.createNew({ email: email, password: hashedPassword, name: additional_data.name }).then(user => {
                   console.log('user created');
-                  // note the return needed with passport local - remove this return for passport JWT to work
                   return done(null, user);
                 });
               });

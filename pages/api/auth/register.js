@@ -19,16 +19,12 @@ handler.post((req, res, next) => {
       res.send(info.message);
     } else {
       req.logIn(user, err => {
-        const data = {
-          email: req.body.email,
-          name: req.body.name
-        };
-
-        userService.updateUserByEmail(data.email, data)
-          .then(() => {
-            console.log('user created in db');
-            res.status(200).send({ message: 'user created' });
-          });
+        if (!err) {
+          res.status(200).send({ message: 'user created' });
+        } else {
+          console.error(err)
+          res.status(500).send(err)
+        }
       });
     }
   })(req, res, next);
