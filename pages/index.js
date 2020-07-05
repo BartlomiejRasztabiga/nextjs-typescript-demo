@@ -8,7 +8,7 @@ export default function Home() {
       <Header />
       <main style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Login />
-      </main>
+      </main>i
     </>
   )
 }
