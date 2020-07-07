@@ -1,50 +1,56 @@
+import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap'
 import { connect } from "react-redux";
 import axios from 'axios'
 
 import { logIn } from '../redux/actions/authActions'
 
-class Login extends React.Component {
+const Login = (props) => {
+    const [email, setEmail] = useState({})
+    const [password, setPassword] = useState({})
 
-    // const { token } = useSWR('/api/auth/login', fetch)
+    const logIn = (token) => props.logIn(token)
 
-    onLoginClick = async () => {
-        console.log(this)
+    const onLoginClick = async () => {
         const response = await axios.post('/api/auth/login', {
-            "email": "test@test.com",
-            "password": "test"
+            "email": email,
+            "password": password
         })
         const token = response.data.access_token
-        this.props.dispatch(logIn(token))
+        logIn(token)
     }
 
-    render() {
-        return <>
+    return <>
 
-            <Form>
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
-                </Form.Group>
+        <Form>
+            <Form.Group controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control type="email" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)} />
+            </Form.Group>
 
-                <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
-                </Form.Group>
+            <Form.Group controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+            </Form.Group>
 
-                <Button variant="primary" onClick={this.onLoginClick}>
-                    Login
+            <Button variant="primary" onClick={onLoginClick}>
+                Login
             </Button>
-            </Form>
-        </>
-    }
+        </Form>
+    </>
 }
 
+
 const mapStateToProps = state => {
-    console.log(state)
     return {
         accessToken: state.auth.access_token
     }
 }
 
-export default connect(mapStateToProps)(Login)
+const mapDispatchToProps = dispatch => {
+    return {
+        logIn: (access_token) => dispatch(logIn(access_token))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
