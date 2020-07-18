@@ -3,22 +3,17 @@ import { Form, Button } from 'react-bootstrap'
 import { connect } from "react-redux";
 import axios from 'axios'
 
-import { logIn } from '../redux/actions/authActions'
+import { login } from '../redux/actions/authActions'
 
 const Login = (props) => {
     const [email, setEmail] = useState({})
     const [password, setPassword] = useState({})
 
-    const logIn = (token) => props.logIn(token)
-
     const onLoginClick = async () => {
-        const response = await axios.post('/api/auth/login', {
-            "email": email,
-            "password": password
-        })
-        const token = response.data.access_token
-        logIn(token)
+        props.login(email, password)
     }
+
+    console.log(props)
 
     return <>
 
@@ -36,6 +31,8 @@ const Login = (props) => {
             <Button variant="primary" onClick={onLoginClick}>
                 Login
             </Button>
+
+            {props.login_error && <small className="text-danger">{props.login_error.body}</small>}
         </Form>
     </>
 }
@@ -43,14 +40,12 @@ const Login = (props) => {
 
 const mapStateToProps = state => {
     return {
-        accessToken: state.auth.access_token
+        accessToken: state.auth.access_token,
+        login_error: state.auth.login_error
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        logIn: (access_token) => dispatch(logIn(access_token))
-    }
-}
+const mapDispatchToProps = { login }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)
