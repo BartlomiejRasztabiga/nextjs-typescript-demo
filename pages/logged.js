@@ -1,11 +1,14 @@
 import React from 'react';
 import { connect } from "react-redux";
 
-const Logged = (props) => {
+const LoggedPage = (props) => {
 
     return <>
-        elo byku
+        <Header />
+        <main style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            zalogowaned
+    </main>
     </>
 }
 
-export default connect()(Logged)
+export default connect()(LoggedPage)

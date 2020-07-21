@@ -8,14 +8,14 @@ const userService = UserService.getInstance();
 
 handler.use(middleware);
 
-handler.post((req, res, next) => {
+handler.get((req, res, next) => {
     passport.authenticate('jwt', { session: false }, (err, user, info) => {
         if (err) {
             console.log(err);
         }
         if (info != undefined) {
             console.log(info.message);
-            res.send(info.message);
+            res.status(403).send(info.message);
         } else {
             console.log('user found in db from route');
             res.status(200).send({

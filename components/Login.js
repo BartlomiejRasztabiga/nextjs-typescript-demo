@@ -13,8 +13,6 @@ const Login = (props) => {
         props.login(email, password)
     }
 
-    console.log(props)
-
     return <>
 
         <Form>

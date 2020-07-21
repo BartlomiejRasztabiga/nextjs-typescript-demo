@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
+import { Navbar, Nav } from 'react-bootstrap'
 
 const Header = () => (
     <div style={{ marginBottom: '5%' }}>
@@ -12,9 +12,7 @@ const Header = () => (
             <Navbar.Toggle />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav>
-                    <NavDropdown title='Test'>
-                        <NavDropdown.Item href="/test">Test</NavDropdown.Item>
-                    </NavDropdown>
+                    <Nav.Link href="/login">Login</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
