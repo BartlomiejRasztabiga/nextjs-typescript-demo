@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import Header from '../components/Header'
-import protectRoute from "../lib/protectRoutenpm"
+import { protectRoute } from "../lib/protectRoute"
 
 
 const LoggedPage = (props) => {
@@ -14,4 +14,4 @@ const LoggedPage = (props) => {
     </>
 }
 
-export default  protectRoute(connect()(LoggedPage))
+export default protectRoute(connect()(LoggedPage))
