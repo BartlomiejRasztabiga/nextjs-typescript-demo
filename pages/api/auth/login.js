@@ -12,16 +12,34 @@ handler.use(middleware);
 
 handler.post((req, res, next) => {
     passport.authenticate('login', (err, user, info) => {
+        console.log(err, user, info)
         if (err) {
             console.log(err);
         }
         if (info != undefined) {
+            if (!user) {
+                res.status(401).json(info)
+                return
+            }
+
             console.log(info.message);
             res.send(info.message);
         } else {
             req.logIn(user, err => {
+                if (err) {
+                    console.log(err)
+                    res.status(401).json(err)
+                    return next(err)
+                }
+                if (!user) {
+                    console.log(user)
+                    res.status(401).json(err)
+                    return
+                }
+                console.log('i ma here')
                 userService.getUserByEmail(user.email)
                     .then(user => {
+                        console.log(user)
                         const token = jwt.sign({ id: user.email }, jwtSecret, { expiresIn: '1h' });
                         res.status(200).send({
                             access_token: token
