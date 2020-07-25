@@ -6,7 +6,10 @@ const UserData = ({ user }) => {
     console.log(user)
     return (
         <div style={{ marginBottom: '5%' }}>
-            <div>{user.name}</div>
+            <div>
+                <p>{user.name}</p>
+                <p>{user.email}</p>
+            </div>
         </div>
     )
 }

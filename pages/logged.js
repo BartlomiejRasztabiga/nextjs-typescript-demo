@@ -12,10 +12,10 @@ import Skeleton from 'react-loading-skeleton';
 const LoggedPage = (props) => {
 
     const { user, loading } = useAuth();
-    const { data = {}, isValidating } = useSWR(loading ? false : '/api/auth/me', api.get)
+    const { data: { data } = {}, isValidating } = useSWR(loading ? false : '/api/auth/me', api.get)
 
     const showSkeleton = isValidating || loading
-
+    
     return <>
         <Header />
         <main style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
