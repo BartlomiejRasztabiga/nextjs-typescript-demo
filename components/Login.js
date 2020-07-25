@@ -16,9 +16,11 @@ const Login = (props) => {
     const onLoginClick = async () => {
         // props.login(email, password)
         login(email, password, "/logged")
+            .then(response => {
+                console.log(response)
+            })
             .catch(err => {
-                console.log('here?')
-                console.log(err)
+                setLoginError(err.response.data.message)
             })
     }
 

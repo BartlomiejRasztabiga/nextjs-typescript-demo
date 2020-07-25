@@ -11,7 +11,7 @@ const userService = UserService.getInstance();
 handler.use(middleware);
 
 handler.post((req, res, next) => {
-    passport.authenticate('login', (err, user, info) => {
+    passport.authenticate('login', { session: false }, (err, user, info) => {
         console.log(err, user, info)
         if (err) {
             console.log(err);

@@ -8,6 +8,14 @@ const BCRYPT_SALT_ROUNDS = 12;
 const userService: UserService = UserService.getInstance()
 const jwtSecret = process.env.JWT_SECRET
 
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
+
 passport.use(
   'register',
   new LocalStrategy(
