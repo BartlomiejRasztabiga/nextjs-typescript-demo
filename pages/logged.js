@@ -1,5 +1,4 @@
 import React from 'react'
-import { connect } from "react-redux"
 import Header from '../components/Header'
 import { protectRoute } from "../lib/protectRoute"
 import useAuth from "../lib/AuthContext"
@@ -15,7 +14,7 @@ const LoggedPage = (props) => {
     const { data: { data } = {}, isValidating } = useSWR(loading ? false : '/api/auth/me', api.get)
 
     const showSkeleton = isValidating || loading
-    
+
     return <>
         <Header />
         <main style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -26,4 +25,4 @@ const LoggedPage = (props) => {
     </>
 }
 
-export default protectRoute(connect()(LoggedPage))
+export default protectRoute(LoggedPage)
