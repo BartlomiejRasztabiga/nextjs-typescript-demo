@@ -3,10 +3,19 @@ import React, { createContext, useState, useContext, useEffect } from 'react'
 import Router, { useRouter } from 'next/router'
 
 //api here is an axios instance
-import api from '../services/api';
+import api, { addBearerToken } from '../services/api';
+
+interface Auth {
+    user: { name: string, email: string },
+    setToken: ({ token: string }) => void,
+    isAuthenticated: boolean,
+    loading: boolean,
+    login: (email, password, redirectTo) => object
+    logout: () => void
+}
 
 
-const AuthContext = createContext({});
+const AuthContext = createContext({} as Auth);
 
 export const AuthProvider = ({ children }) => {
 
@@ -75,15 +84,20 @@ export const AuthProvider = ({ children }) => {
             })
     }
 
-    const logout = (email, password) => {
+    const logout = () => {
         localStorage.removeItem("access_token")
         setUser(null)
         Router.push("/login")
     }
 
+    const setToken = token => {
+        localStorage.setItem("access_token", token)
+        addBearerToken(token)
+    }
+
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated: !!user, user, login, loading, logout }}>
+        <AuthContext.Provider value={{ isAuthenticated: !!user, user, setToken, login, loading, logout }}>
             {children}
         </AuthContext.Provider>
     )

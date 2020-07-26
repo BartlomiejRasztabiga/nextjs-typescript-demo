@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Router from 'next/router'
 import { Form, Button } from 'react-bootstrap'
 import { connect } from "react-redux";
-import axios from 'axios'
 import useAuth from "../lib/AuthContext"
 
 
@@ -11,13 +11,20 @@ const Login = (props) => {
     const [email, setEmail] = useState({})
     const [password, setPassword] = useState({})
     const [loginError, setLoginError] = useState(null)
-    const { login } = useAuth();
+    const { login, isAuthenticated } = useAuth();
+
+    useEffect(() => {
+        async function redirectToLoggedWhenAuthenticated() {
+            if (isAuthenticated) Router.push("/logged")
+        }
+        redirectToLoggedWhenAuthenticated()
+    }, [isAuthenticated])
 
     const onLoginClick = async () => {
         // props.login(email, password)
         login(email, password, "/logged")
             .then(response => {
-                console.log(response)
+                setLoginError(null)
             })
             .catch(err => {
                 setLoginError(err.response.data.message)
