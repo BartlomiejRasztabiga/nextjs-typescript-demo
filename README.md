@@ -1,1 +1,1 @@
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).
+This is a starter template for webapp projects using Next.js (React) with serverless API routes.
