@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { Navbar as BootstrapNavbar, Nav, Container } from 'react-bootstrap';
 
 import useAuth from '../lib/AuthContext';
+import AuthenticatedMenu from './AuthenticatedMenu';
+import UnauthenticatedMenu from './UnauthenticatedMenu';
 
 const Navbar = () => {
 
@@ -30,40 +32,6 @@ const Navbar = () => {
     )
 }
 
-const AuthenticatedMenu = () => {
-    const { user, logout } = useAuth()
-    return (
-        <>
-            <NavbarLink href={'/dashboard'} >
-                Hello {user.email}
-            </NavbarLink>
-            <Nav.Item onClick={logout}>
-                <a style={{ cursor: 'pointer' }} className="nav-link">
-                    Logout
-                </a>
-            </Nav.Item>
-        </>
-    )
-}
 
-const UnauthenticatedMenu = () => (
-    <>
-        <NavbarLink href={'/login'} >
-            Login
-        </NavbarLink>
-
-        <NavbarLink href={'/signup'} >
-            Signup
-        </NavbarLink>
-    </>
-)
-
-const NavbarLink = ({ href, children }) => (
-    <Link href={href}>
-        <a className="nav-link" >
-            {children}
-        </a>
-    </Link>
-)
 
 export default Navbar
