@@ -5,7 +5,9 @@ import { Navbar as BootstrapNavbar, Nav, Container } from 'react-bootstrap';
 import useAuth from '../lib/AuthContext';
 
 const Navbar = () => {
+
     const { isAuthenticated } = useAuth()
+
     return (
         <BootstrapNavbar bg="light" expand="lg">
             <Container>
@@ -22,7 +24,6 @@ const Navbar = () => {
                             <UnauthenticatedMenu />
                         }
                     </Nav>
-
                 </BootstrapNavbar.Collapse>
             </Container>
         </BootstrapNavbar>
@@ -56,6 +57,7 @@ const UnauthenticatedMenu = () => (
         </NavbarLink>
     </>
 )
+
 const NavbarLink = ({ href, children }) => (
     <Link href={href}>
         <a className="nav-link" >
