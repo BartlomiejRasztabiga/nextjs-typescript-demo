@@ -50,6 +50,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     const setToken = async token => {
+        console.log(token)
         localStorage.setItem(ACCESS_TOKEN, token)
         addBearerToken(token)
         await updateUser()
