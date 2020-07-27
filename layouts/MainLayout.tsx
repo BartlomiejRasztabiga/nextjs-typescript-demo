@@ -8,7 +8,7 @@ type ChildrenType = React.ReactNode
 export default function MainLayout({ children }: { children: ChildrenType }) {
     return (
         <>
-            <Navbar></Navbar>
+            <Navbar />
             <Container>
                 <Row>
                     <Col>
