@@ -1,13 +1,13 @@
-import Login from '../components/Login'
-import Header from '../components/Header'
+import React from 'react'
 
-export default function LoginPage() {
-  return (
-    <>
-      <Header />
-      <main style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <Login />
-      </main>
-    </>
-  )
+import { routes } from '../services/routes'
+import AuthForm from '../components/AuthForm'
+
+const Login = () => {
+
+    return (
+        <AuthForm route={routes.login} title={"Login"} />
+    )
 }
+
+export default Login

@@ -1,7 +1,6 @@
 import React from 'react'
-import Header from '../components/Header'
 import { protectRoute } from "../lib/protectRoute"
-import useAuth from "../lib/AuthContext"
+import { useAuth } from "../lib/AuthContext"
 import useSWR from 'swr'
 import api from "../services/api"
 import UserData from '../components/UserData'
@@ -16,7 +15,6 @@ const LoggedPage = (props) => {
     const showSkeleton = isValidating || loading
 
     return <>
-        <Header />
         <main style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             zalogowaned
             {data && <UserData user={data} />}

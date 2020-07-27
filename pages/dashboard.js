@@ -1,7 +1,6 @@
 import React from 'react'
-import Header from '../components/Header'
 import { protectRoute } from "../lib/protectRoute"
-import useAuth from "../lib/AuthContext"
+import { useAuth } from "../lib/AuthContext"
 import useSWR from 'swr'
 import api from "../services/api"
 import Skeleton from 'react-loading-skeleton';
@@ -15,7 +14,6 @@ const DashboardPage = (props) => {
     const showSkeleton = isValidating || loading
 
     return <>
-        <Header />
         <main style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             {groceryItems && <GroceryItemsList groceryItems={groceryItems} />}
             {showSkeleton && <Skeleton height={40} count={5} />}

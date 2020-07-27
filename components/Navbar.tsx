@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { Navbar as BootstrapNavbar, Nav, Container } from 'react-bootstrap';
 
-import useAuth from '../lib/AuthContext';
+import { useAuth } from '../lib/AuthContext';
 import AuthenticatedMenu from './AuthenticatedMenu';
 import UnauthenticatedMenu from './UnauthenticatedMenu';
 

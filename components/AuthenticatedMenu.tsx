@@ -1,6 +1,6 @@
 import { Nav } from 'react-bootstrap';
 
-import useAuth from '../lib/AuthContext';
+import { useAuth } from '../lib/AuthContext';
 import NavbarLink from './NavbarLink';
 
 const AuthenticatedMenu = () => {
