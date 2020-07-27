@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar'
 
 type ChildrenType = React.ReactNode
 
-export default function MainLayout({ children }: { children: ChildrenType }) {
+const MainLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <>
             <Navbar />
@@ -19,3 +19,5 @@ export default function MainLayout({ children }: { children: ChildrenType }) {
         </>
     )
 }
+
+export default MainLayout
