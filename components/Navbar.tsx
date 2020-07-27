@@ -1,17 +1,17 @@
 import React from 'react'
-import { Navbar as BootstrapNavbar, NavDropdown, Nav, Form, FormControl, Button, Container, NavLink } from 'react-bootstrap';
-
 import Link from 'next/link'
+import { Navbar as BootstrapNavbar, Nav, Container } from 'react-bootstrap';
+
 import useAuth from '../lib/AuthContext';
 
-export default function Navbar() {
+const Navbar = () => {
     const { isAuthenticated } = useAuth()
     return (
         <BootstrapNavbar bg="light" expand="lg">
             <Container>
                 <Link href="/">
                     <a>
-                        <BootstrapNavbar.Brand>Your Project</BootstrapNavbar.Brand>
+                        <BootstrapNavbar.Brand>Fridgy</BootstrapNavbar.Brand>
                     </a>
                 </Link>
                 <BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />
@@ -63,3 +63,5 @@ const NavbarLink = ({ href, children }) => (
         </a>
     </Link>
 )
+
+export default Navbar
