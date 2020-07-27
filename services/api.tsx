@@ -1,13 +1,15 @@
 import Axios from "axios";
 import Router from 'next/router';
 
-let urls = {
-    test: `http://localhost:3000/`,
-    development: 'http://localhost:3000/',
-    production: 'https://your-production-url.com/'
-}
+const url = 'http://localhost:3000/'
+
+// let urls = {
+//     test: `http://localhost:3000/`,
+//     development: 'http://localhost:3000/',
+//     production: 'https://your-production-url.com/'
+// }
 const api = Axios.create({
-    baseURL: urls[process.env.NODE_ENV],
+    baseURL: url,
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
