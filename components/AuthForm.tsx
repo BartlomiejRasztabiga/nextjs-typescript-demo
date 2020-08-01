@@ -16,8 +16,7 @@ interface ValidationError {
 }
 
 interface DisplayErrors {
-    errors: ValidationError[],
-    fieldName: string
+    errors: ValidationError[]
 }
 
 const AuthForm = ({ title, route }: AuthProps) => {
@@ -32,13 +31,11 @@ const AuthForm = ({ title, route }: AuthProps) => {
 
         api.post(route, { email, password })
             .then(response => {
-                console.log(response.data)
                 const token = response.data.access_token
                 setToken(token)
             })
             .catch(error => {
-                setErrors(error.response.data || [])
-                console.error(error)
+                setErrors([error.response.data] || [])
             })
     }
 
@@ -59,13 +56,12 @@ const AuthForm = ({ title, route }: AuthProps) => {
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Label>Email address</Form.Label>
                                 <Form.Control name="email" type="email" placeholder="Enter email" />
-                                <DisplayErrors errors={errors} fieldName="email" />
                             </Form.Group>
 
                             <Form.Group controlId="formBasicPassword">
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control name="password" type="password" placeholder="Password" />
-                                <DisplayErrors errors={errors} fieldName="password" />
+                                <DisplayErrors errors={errors} />
 
                             </Form.Group>
 
@@ -81,10 +77,10 @@ const AuthForm = ({ title, route }: AuthProps) => {
     )
 }
 
-const DisplayErrors = ({ errors, fieldName }: DisplayErrors) => (
+const DisplayErrors = ({ errors }: DisplayErrors) => (
     <>
-        {errors.filter(e => e.field === fieldName).map((e) => (
-            <p className="text-danger">
+        {errors.map((e, i) => (
+            <p key={i} className="text-danger">
                 {e.message}
             </p>
         ))}
