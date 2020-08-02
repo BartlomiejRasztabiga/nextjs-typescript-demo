@@ -26,6 +26,7 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const token = localStorage.getItem(ACCESS_TOKEN)
         if (token) {
+            console.log(token)
             setToken({ token })
         }
     }, [])
@@ -64,80 +65,6 @@ export const AuthProvider = ({ children }) => {
     const redirectAfterLogout = () => {
         Router.push("/")
     }
-
-    // useEffect(() => {
-    //     async function loadUserFromLocalStorage() {
-    //         const token = localStorage.getItem('access_token')
-    //         if (token) {
-    //             console.log("Got a token in the local storage, let's see if it is valid")
-    //             console.log(token)
-    //             api.defaults.headers.Authorization = `Bearer ${token}`
-    //             const response = api.get('api/auth/me').then(response => {
-    //                 console.log(response)
-    //                 const user = response.data
-    //                 if (user) {
-    //                     setUser(user);
-    //                     // Router.push("/logged")
-    //                 }
-
-    //             })
-    //                 .catch(err => {
-    //                     localStorage.removeItem("access_token")
-    //                     setUser(null)
-    //                     Router.push("/login")
-    //                 })
-
-    //         }
-    //         setLoading(false)
-    //     }
-    //     loadUserFromLocalStorage()
-    // }, [])
-
-    // const login = async (email, password, redirectTo) => {
-    //     // const response = await api.post('api/auth/login', { email, password })
-    //     return await api.post('api/auth/login', { email, password })
-    //         .then(response => {
-    //             const access_token = response.data.access_token
-    //             if (access_token) {
-    //                 console.log("Got token")
-    //                 console.log(access_token)
-    //                 localStorage.setItem("access_token", access_token)
-    //                 api.defaults.headers.Authorization = `Bearer ${access_token}`
-    //                 api.get('api/auth/me')
-    //                     .then(response => {
-    //                         const user = response.data
-    //                         console.log("Got user", user)
-    //                         if (user) {
-    //                             setUser(user);
-    //                             if (redirectTo) {
-    //                                 Router.push(redirectTo)
-    //                             }
-    //                             return Promise.resolve(null)
-    //                         }
-    //                     })
-    //                     .catch(err => {
-    //                         setUser(null)
-    //                         return Promise.reject(err)
-    //                     })
-    //             }
-    //         })
-    //         .catch(err => {
-    //             setUser(null)
-    //             return Promise.reject(err)
-    //         })
-    // }
-
-    // const logout = () => {
-    //     localStorage.removeItem("access_token")
-    //     setUser(null)
-    //     Router.push("/login")
-    // }
-
-    // const setToken = token => {
-    //     localStorage.setItem("access_token", token)
-    //     addBearerToken(token)
-    // }
-
 
     return (
         <AuthContext.Provider value={{ setToken, user, isAuthenticated: !!user, logout }}>

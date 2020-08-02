@@ -90,9 +90,11 @@ const opts = {
 passport.use(
   'jwt',
   new JWTStrategy(opts, (jwt_payload, done) => {
+    console.log(jwt_payload)
     try {
       userService.getUserByEmail(jwt_payload.id)
         .then(user => {
+          console.log(user)
           if (user) {
             // note the return removed with passport JWT - add this return for passport local
             done(null, user);

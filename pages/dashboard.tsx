@@ -8,10 +8,15 @@ import { protectRoute } from "../lib/protectRoute"
 import { routes } from '../services/routes';
 import { IGroceryItem } from '../models/GroceryItem'
 import GroceryItemsList from '../components/GroceryItemsList'
+import MainLayout from '../layouts/MainLayout';
 
 
 const DashboardPage = (props) => {
     const { isAuthenticated } = useAuth()
+
+    // useEffect(() => {
+    //     if (!isAuthenticated) Router.push('/')
+    // }, [isAuthenticated])
 
     const { data, error } = useSWR(isAuthenticated ? routes.groceryItems : null, api.get)
 
@@ -25,11 +30,12 @@ const DashboardPage = (props) => {
     let { data: groceryItems } = data as { data: IGroceryItem[] }
 
     return <>
-        <main style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <MainLayout>
             {groceryItems && <GroceryItemsList groceryItems={groceryItems} />}
             {showSkeleton && <Skeleton height={40} count={5} />}
-        </main>
+        </MainLayout>
     </>
 }
 
-export default protectRoute(DashboardPage)
+// export default protectRoute(DashboardPage)
+export default DashboardPage

@@ -4,7 +4,6 @@ import { Navbar, Nav } from 'react-bootstrap'
 import GroceryItem from './GroceryItem'
 
 const GroceryItemsList = ({ groceryItems }) => {
-    console.log(user)
     return (
         <ul>
             {groceryItems.map(groceryItem => (
