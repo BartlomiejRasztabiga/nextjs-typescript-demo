@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
         const token = localStorage.getItem(ACCESS_TOKEN)
         if (token) {
             console.log(token)
-            setToken({ token })
+            setToken(token)
         }
     }, [])
 

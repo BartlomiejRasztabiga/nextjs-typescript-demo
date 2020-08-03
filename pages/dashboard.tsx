@@ -14,9 +14,9 @@ import MainLayout from '../layouts/MainLayout';
 const DashboardPage = (props) => {
     const { isAuthenticated } = useAuth()
 
-    // useEffect(() => {
-    //     if (!isAuthenticated) Router.push('/')
-    // }, [isAuthenticated])
+    useEffect(() => {
+        if (!isAuthenticated) Router.push('/')
+    }, [isAuthenticated])
 
     const { data, error } = useSWR(isAuthenticated ? routes.groceryItems : null, api.get)
 
