@@ -21,13 +21,17 @@ const DashboardPage = (props) => {
     const { data, error } = useSWR(isAuthenticated ? routes.groceryItems : null, api.get)
 
     if (error) return <p> There was an error </p>
-    if (!data) return <p> Loading... </p>
-
-    console.log(data)
+    // if (!data) return <p> Loading... </p>
 
     let showSkeleton = !data
 
-    let { data: groceryItems } = data as { data: IGroceryItem[] }
+    // let { data: groceryItems } = data ? as { data: IGroceryItem[] }
+
+    
+
+    const groceryItems = data ? data.data : null
+ 
+    console.log(groceryItems)
 
     return <>
         <MainLayout>

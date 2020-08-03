@@ -41,9 +41,9 @@ handler.post(async (req, res) => {
         }
     })(req, res);
 
-    if (!req.user) {
-        return res.status(401).send('Unauthorized');
-    }
+    // if (!req.user) {
+    //     return res.status(401).send('Unauthorized');
+    // }
 });
 
 
