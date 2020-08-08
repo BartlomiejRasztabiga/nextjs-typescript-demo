@@ -4,7 +4,6 @@ import { LocalAuthGuard } from './local-auth.guard';
 import { AuthService } from './auth.service';
 import { User } from '../users/schemas/user.schema';
 
-// type User = any;
 
 @Controller('auth')
 export class AuthController {
