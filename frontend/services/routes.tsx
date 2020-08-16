@@ -1,6 +1,6 @@
 export const routes = {
-    login: 'api/auth/login',
-    signup: 'api/auth/register',
-    me: 'api/auth/me',
-    groceryItems: 'api/grocery-items'
+    login: 'auth/login',
+    signup: 'auth/register',
+    me: 'auth/me',
+    groceryItems: 'grocery-items'
 }

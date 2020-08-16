@@ -1,7 +1,7 @@
 import Axios from "axios";
 import Router from 'next/router';
 
-const url = 'http://localhost:3000/'
+const url = 'http://localhost:9000/'
 
 // let urls = {
 //     test: `http://localhost:3000/`,
