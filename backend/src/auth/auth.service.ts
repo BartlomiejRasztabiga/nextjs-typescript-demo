@@ -2,9 +2,12 @@ import { User } from '../users/schemas/user.schema';
 
 const bcrypt = require('bcryptjs');
 
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
+import { RegisterUserDto } from './dto/register-user.dto';
+import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import { hash } from 'bcrypt';
 
 
 @Injectable()
@@ -40,5 +43,16 @@ export class AuthService {
     return {
       access_token: this.jwtService.sign(payload),
     };
+  }
+
+  async register(registerUserDto: RegisterUserDto) {
+    const existingUser = await this.usersService.findByEmail(registerUserDto.email)
+    if (existingUser) {
+      throw new HttpException('User with this email address already exists', HttpStatus.CONFLICT);
+    }
+
+    const hashedPassword = bcrypt.hashSync(registerUserDto.password, 10);
+    const newUser = await this.usersService.create({ email: registerUserDto.email, password: hashedPassword, name: registerUserDto.name });
+    return newUser;
   }
 }
