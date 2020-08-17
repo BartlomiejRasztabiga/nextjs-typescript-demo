@@ -4,7 +4,6 @@ import useSWR from 'swr'
 import api from "../services/api"
 import Skeleton from 'react-loading-skeleton';
 import Router from 'next/router'
-import { protectRoute } from "../lib/protectRoute"
 import { routes } from '../services/routes';
 import { IGroceryItem } from '../models/GroceryItem'
 import GroceryItemsList from '../components/GroceryItemsList'
@@ -41,5 +40,4 @@ const DashboardPage = (props) => {
     </>
 }
 
-// export default protectRoute(DashboardPage)
 export default DashboardPage
