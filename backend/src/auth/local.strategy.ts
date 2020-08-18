@@ -18,7 +18,6 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
 
     async validate(request: Request, email: string, password: string): Promise<any> {
         const contextId = ContextIdFactory.getByRequest(request);
-        // "AuthService" is a request-scoped provider
         const authService = await this.moduleRef.resolve(AuthService, contextId);
 
         const user = await authService.validateUser(email, password);

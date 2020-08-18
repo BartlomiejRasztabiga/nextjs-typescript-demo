@@ -2,7 +2,6 @@ import '../styles/global.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import React from 'react';
-// import { wrapper } from '../redux/store';
 import { AuthProvider } from '../lib/AuthContext';
 import { AppProps } from 'next/app';
 

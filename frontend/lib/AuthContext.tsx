@@ -8,8 +8,6 @@ interface Auth {
     user: { name: string, email: string },
     setToken: ({ token: string }) => void,
     isAuthenticated: boolean,
-    // loading: boolean,
-    // login: (email, password, redirectTo) => object
     logout: () => void
 }
 
