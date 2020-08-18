@@ -1,13 +1,8 @@
 import Axios from "axios";
 import Router from 'next/router';
 
-const url = process.env.API_URL || 'http://localhost:9000/'
+const url = process.env.NEXT_PUBLIC_API_URL
 
-// let urls = {
-//     test: `http://localhost:3000/`,
-//     development: 'http://localhost:3000/',
-//     production: 'https://your-production-url.com/'
-// }
 const api = Axios.create({
     baseURL: url,
     headers: {
