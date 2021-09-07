@@ -34,7 +34,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "remark": "12.0.1",
-    "remark-html": "12.0.0",
+    "remark-html": "13.0.2",
     "sass": "1.26.10",
     "swr": "^0.3.0",
     "validator": "^13.1.1"
